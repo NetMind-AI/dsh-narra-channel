@@ -8,7 +8,6 @@ Describe the user-facing problem and the focused change that addresses it.
 - [ ] `pnpm test`
 - [ ] `pnpm build`
 - [ ] `pnpm pack:check`
-- [ ] `docker compose --file docker/compose.yaml config --quiet`
 - [ ] Relevant Narra/DeepSeek Harness behavior was tested manually, or the reason it was not tested is documented below.
 
 ## Compatibility and security

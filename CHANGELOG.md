@@ -16,7 +16,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Deterministic Narra-room to Harness-session mapping and duplicate-invocation recovery.
 - Streaming Gateway delivery and speech-friendly handling for `voice_instructions`.
 - Credential-backed storage for setup-guide URLs and Gateway bearer tokens.
-- Docker-isolated deployment for users who do not want Harness to access the host home directory.
 
 ### Security
 

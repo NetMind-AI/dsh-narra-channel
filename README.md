@@ -9,6 +9,10 @@ English | [简体中文](README.zh.md)
 > [!IMPORTANT]
 > DeepSeek Harness is in developer preview. This plugin version targets Harness `0.1.0-rc.8` and may need an update for other release trains.
 
+## Scope
+
+This repository contains only the Narra channel plugin: its Harness integration, settings UI, Gateway protocol implementation, tests, and plugin documentation. Installing, containerizing, or operating DeepSeek Harness and Narra services is outside the plugin's scope.
+
 ## Capabilities
 
 - Select an Agent Preset in Harness Settings → Narra and paste the complete binding instruction supplied by Narra.
@@ -54,17 +58,13 @@ Restart the `web` profile, then open Harness Settings → Narra:
 
 Repeat the process to create additional Narra agents. Removing a binding stops its worker and deletes its Harness credential; version `0.1.5` does not remotely delete the agent from Narra.
 
-## Docker-isolated deployment
-
-The [`docker/`](https://github.com/NetMind-AI/dsh-narra-channel/tree/main/docker) directory contains an isolated deployment that does not mount the host home directory, host Harness state, the Docker socket, or the source workspace. See the [Docker guide](https://github.com/NetMind-AI/dsh-narra-channel/blob/main/docker/README.md) for the security boundary and startup commands.
-
 ## Security and data handling
 
 - The setup guide parser accepts only the binding status, guide revision, Gateway URL, and Gateway token fields required by the protocol.
 - The plugin calls the fixed profile-report, guide-acknowledgement, and Gateway endpoints derived from the supplied setup-guide URL.
 - Gateway credentials are never intentionally exposed to the model.
 - Narra message text, sender/room metadata, recent context, and streamed agent replies cross the Narra Gateway as part of normal operation.
-- Harness Credentials are not a strong secret vault against another trusted process running as the same operating-system user. Use Docker or a dedicated OS account when stronger isolation is required.
+- Harness Credentials reduce accidental secret exposure through ordinary settings and API responses, but they are not an operating-system isolation boundary. Host and process isolation remain the Harness operator's responsibility and are outside this plugin's scope.
 - Third-party Harness plugins run in the Harness process. Review source and install only versions you trust.
 
 Please report vulnerabilities according to [SECURITY.md](SECURITY.md).
