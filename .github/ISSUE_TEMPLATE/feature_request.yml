@@ -1,0 +1,36 @@
+name: Feature request
+description: Propose a focused improvement to the Narra channel plugin.
+title: "[Feature]: "
+labels:
+  - enhancement
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: User problem
+      description: What user workflow is difficult or impossible today?
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Desired outcome
+      description: Describe the result rather than prescribing an implementation.
+    validations:
+      required: true
+  - type: textarea
+    id: scenario
+    attributes:
+      label: Narra and Harness scenario
+      description: Include the agent, conversation, voice, or multi-agent context that matters.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+  - type: textarea
+    id: compatibility
+    attributes:
+      label: Compatibility or security constraints
+      description: Note relevant Harness versions, Narra behavior, or data-access concerns.
