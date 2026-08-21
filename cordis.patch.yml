@@ -1,0 +1,3 @@
+- insert:
+    - id: narra-channel
+      name: '@narra/dsh-narra-channel'
