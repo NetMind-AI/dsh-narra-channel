@@ -7,6 +7,10 @@
 > [!IMPORTANT]
 > DeepSeek Harness 目前仍处于 developer preview。本插件版本只承诺兼容 Harness `0.1.0-rc.8`，其他版本可能需要适配。
 
+## 项目范围
+
+本仓库只维护 Narra Channel 插件，包括 Harness 集成、设置界面、Gateway 协议实现、测试和插件文档。DeepSeek Harness 与 Narra 服务的安装、容器化和运行维护不属于本插件范围。
+
 ## 第一版能力
 
 - 在 Harness 的 Settings → Narra 中选择 Agent Preset 并粘贴 Narra 提供的完整绑定脚本。插件自动提取 setup guide URL，并使用 preset 的名称和描述向 Narra 上报 Agent profile。
@@ -44,16 +48,12 @@ dsh plugin --profile web add ./narra-dsh-narra-channel-0.1.5.tgz
 
 创建多个 Agent 时重复以上操作即可。删除一行会停止对应 Worker 并删除 Harness 中对应 credential，但第一版不会代表用户在 Narra 服务端解绑 Agent。
 
-## Docker 隔离部署
-
-如果不希望 Harness 读取宿主机用户目录，使用 [`docker/README.md`](https://github.com/NetMind-AI/dsh-narra-channel/blob/main/docker/README.md) 中的独立部署。该部署不复制宿主机 `~/.dsh`，只挂载两个 Docker named volume，并将 Web UI 限制在宿主机 `127.0.0.1:3081`。首次启动后需要使用新的绑定脚本重新绑定 Narra。
-
 ## 安全与数据边界
 
 - 插件只接受协议所需的绑定状态、指南版本、Gateway URL 和 Gateway token 字段。
 - Gateway credential 不会主动暴露给模型。
 - Narra 消息文本、发送者／房间元数据、近期上下文和 Agent 流式回复会在正常工作期间经过 Narra Gateway。
-- Harness Credentials 防止 secret 出现在普通 UI/API 响应中；它不是针对同一操作系统用户的强隔离保险箱。需要更强隔离时使用 Docker 或独立系统账号。
+- Harness Credentials 用于减少 secret 在普通设置和 API 响应中的意外暴露，但不构成操作系统隔离边界。宿主机和进程隔离由 Harness 运行方负责，不属于本插件范围。
 - 第三方 Harness 插件运行在 Harness 主进程内，请只安装经过审查且可信的版本。
 
 安全问题请按照 [SECURITY.md](SECURITY.md) 私下报告。

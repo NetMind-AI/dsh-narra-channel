@@ -29,7 +29,6 @@ body:
       options:
         - GitHub release tarball
         - Locally built tarball
-        - Docker deployment
         - Other
     validations:
       required: true

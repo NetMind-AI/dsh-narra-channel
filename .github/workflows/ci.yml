@@ -46,6 +46,3 @@ jobs:
 
       - name: Verify package contents
         run: pnpm pack:check
-
-      - name: Validate Docker Compose configuration
-        run: docker compose --file docker/compose.yaml config --quiet

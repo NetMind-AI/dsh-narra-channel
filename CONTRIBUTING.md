@@ -27,7 +27,6 @@ pnpm typecheck
 pnpm test
 pnpm build
 pnpm pack:check
-docker compose --file docker/compose.yaml config --quiet
 ```
 
 ## Pull requests
